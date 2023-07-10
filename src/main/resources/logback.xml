@@ -1,0 +1,46 @@
+<configuration>
+
+    <!-- Define the log files -->
+    <property name="log.path" value="C:/var/log/applications/API/logs" />
+    <property name="request.log.file" value="${log.path}/request.log" />
+    <property name="response.log.file" value="${log.path}/response.log" />
+
+    <!-- Console appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    //
+
+    <!-- Requests appender -->
+    <appender name="REQUEST" class="ch.qos.logback.core.FileAppender">
+        <file>${request.log.file}</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Responses appender -->
+    <appender name="RESPONSE" class="ch.qos.logback.core.FileAppender">
+        <file>${response.log.file}</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Define loggers -->
+    <logger name="com.practical.PROJECT.controller" level="INFO">
+        <appender-ref ref="REQUEST" />
+    </logger>
+
+    <logger name="com.practical.PROJECT.controller" level="INFO">
+        <appender-ref ref="RESPONSE" />
+    </logger>
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
